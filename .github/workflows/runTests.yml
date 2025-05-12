@@ -14,9 +14,10 @@ on:
       testSuite:
         description: "Escolha a suíte de teste: Login, Product ou Users"
         required: true
-        default: "login"
+        default: "all"
         type: choice
         options:
+        - all
         - login
         - product
         - users
@@ -36,10 +37,10 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npm run test
+      run: npm run test:${{ github.event.inputs.testSuite }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
-        name: report
+        name: report - ${{ github.event.inputs.testSuite }} - ${{ github.event.inputs.environment }}
         path: src/report/
         retention-days: 30
