@@ -1,0 +1,45 @@
+name: Run Playwright Tests
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Escolha o ambiente: dev, staging ou sandbox"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+        - dev
+        - staging
+        - sandbox
+      testSuite:
+        description: "Escolha a suíte de teste: Login, Product ou Users"
+        required: true
+        default: "login"
+        type: choice
+        options:
+        - login
+        - product
+        - users
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npm run test
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: report
+        path: src/report/
+        retention-days: 30
