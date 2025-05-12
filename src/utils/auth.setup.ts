@@ -14,8 +14,6 @@ setup('authenticate', async ({ page }) => {
     await user.attemptTo(LoginAsAdmin('fulano@qa.com', 'teste'));
     // Assert
     await page.waitForURL(/.*admin\/home/);
-    await IsPageVisible('admin/home', 'Este é seu sistema para administrar seu ecommerce.');
-    const state = await page.context().storageState();
-    console.log(JSON.stringify(state, null, 2));         
+    await IsPageVisible('admin/home', 'Este é seu sistema para administrar seu ecommerce.');      
     await page.context().storageState({ path: authFile });
 });
