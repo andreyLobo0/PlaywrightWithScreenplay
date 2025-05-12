@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { AdminUser } from '../../actors/AdminUser';
 import { LoginAsAdmin } from '../../tasks/LoginAsAdmin';
 import { IsPageVisible } from '../../questions/IsPageVisible';

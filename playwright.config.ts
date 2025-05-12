@@ -65,7 +65,7 @@ export default defineConfig({
         storageState: './src/utils/.auth/user.json',
        },
       dependencies: ['Setup'],
-      testIgnore: /\login.spec\.ts/, // Ignora os arquivos de teste de login
+      testIgnore: /login.spec\.ts/, // Ignora os arquivos de teste de login
     },
 
     {
@@ -75,7 +75,7 @@ export default defineConfig({
         storageState: './src/utils/.auth/user.json',
        },
       dependencies: ['Setup'],
-      testIgnore: /\login.spec\.ts/, // Ignora os arquivos de teste de login
+      testIgnore: /login.spec\.ts/, // Ignora os arquivos de teste de login
     },
 
     {
@@ -85,7 +85,7 @@ export default defineConfig({
         storageState: './src/utils/.auth/user.json',
        },
       dependencies: ['Setup'],
-      testIgnore: /\login.spec\.ts/, // Ignora os arquivos de teste de login
+      testIgnore: /login.spec\.ts/, // Ignora os arquivos de teste de login
     },
 
     /* Test against mobile viewports. */

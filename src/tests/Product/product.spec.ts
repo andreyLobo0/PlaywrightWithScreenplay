@@ -1,8 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { test} from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { AdminUser } from '../../actors/AdminUser';
 import { CreateProduct } from '../../tasks/CreateProduct';
 import { IsPageVisible } from '../../questions/IsPageVisible';
+import { ItemCreatedIsVisible } from '../../questions/ItemCreatedIsVisible';
 test.describe('Product', () => {
     const productName = faker.commerce.productName ();
     const productPrice = faker.number.int({ min: 1, max: 100 });
@@ -17,7 +18,7 @@ test.describe('Product', () => {
         await user.attemptTo(CreateProduct(productName, productPrice, productDescription, productQuantity));
         //Assert
         await IsPageVisible('admin/listarprodutos', 'Lista dos Produtos');
-        await expect(page.getByRole('cell', { name: productName })).toBeVisible();
+        await ItemCreatedIsVisible(productName)
     })
    })
    test.describe('Error', () => {
@@ -27,7 +28,7 @@ test.describe('Product', () => {
         const user = new AdminUser(page);
         await user.attemptTo(CreateProduct(productName, productPrice, productDescription, productQuantity));
         await IsPageVisible('admin/listarprodutos', 'Lista dos Produtos');
-        await expect(page.getByRole('cell', { name: productName })).toBeVisible();
+        await ItemCreatedIsVisible(productName)
         //Act
         await page.goto('https://front.serverest.dev/admin/cadastrarprodutos');
         await user.attemptTo(CreateProduct(productName, productPrice, productDescription, productQuantity));

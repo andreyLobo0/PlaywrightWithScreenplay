@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { AdminUser } from '../../actors/AdminUser';
 import { CreateUsers } from '../../tasks/CreateUsers';
