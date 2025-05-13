@@ -37,6 +37,12 @@ Projeto de automação de testes end-to-end desenvolvido com:
 - ❌ Produto duplicado
   - Validar mensagem de erro ao tentar criar produto existente
 
+  ### Usuarios
+- ✅ Criação de usuario
+  - Validar criação bem-sucedida de novo usuario
+- ❌ Usuario duplicado
+  - Validar mensagem de erro ao tentar criar usuario existente
+
 ## 📁 Estrutura do Projeto
 
 ```
