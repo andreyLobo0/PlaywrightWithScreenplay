@@ -12,7 +12,7 @@ test.describe('Product', () => {
    test.describe('Success', () => {
     test('Create Product - Should create a product successfully', async ({ page }) => {
         //Arrange
-        await page.goto('https://front.serverest.dev/admin/cadastrarprodutos');
+        await page.goto('/admin/cadastrarprodutos');
         const user = new AdminUser(page);
         //Act
         await user.attemptTo(CreateProduct(productName, productPrice, productDescription, productQuantity));
@@ -24,13 +24,13 @@ test.describe('Product', () => {
    test.describe('Error', () => {
     test('Product Duplicate - Should exhibit alert message and not create product.', async ({ page }) => {
         //Arrange
-        await page.goto('https://front.serverest.dev/admin/cadastrarprodutos');
+        await page.goto('/admin/cadastrarprodutos');
         const user = new AdminUser(page);
         await user.attemptTo(CreateProduct(productName, productPrice, productDescription, productQuantity));
         await IsPageVisible('admin/listarprodutos', 'Lista dos Produtos');
         await ItemCreatedIsVisible(productName)
         //Act
-        await page.goto('https://front.serverest.dev/admin/cadastrarprodutos');
+        await page.goto('/admin/cadastrarprodutos');
         await user.attemptTo(CreateProduct(productName, productPrice, productDescription, productQuantity));
         //Assert
         await IsPageVisible('admin/cadastrarprodutos', 'Já existe produto com esse nome');

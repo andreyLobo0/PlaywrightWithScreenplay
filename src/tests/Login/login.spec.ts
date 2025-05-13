@@ -8,10 +8,10 @@ test.describe('Login', () => {
     test.use({ storageState: { cookies: [], origins: [] } });
     test('Valid Credentials - Should log in successfully and open the home screen', async ({ page }) => {
     // Arrange
-    await page.goto('https://front.serverest.dev/login');
+    await page.goto('/login');
     const user = new AdminUser(page);
     // Act
-    await user.attemptTo(LoginAsAdmin('fulano@qa.com', 'teste'));
+    await user.attemptTo(LoginAsAdmin('fulano2@qa.com', 'teste'));
     // Assert
     await IsPageVisible('admin/home', 'Este é seu sistema para administrar seu ecommerce.');
     });
@@ -20,7 +20,7 @@ test.describe('Login', () => {
     test.use({ storageState: { cookies: [], origins: [] } });
     test('Invalid Credentials - Should log in without successfully and display message of the error', async ({ page }) => {
       // Arrange
-    await page.goto('https://front.serverest.dev/login');
+    await page.goto('/login');
     const user = new AdminUser(page);
     // Act
     await user.attemptTo(LoginAsAdmin('fulano@qa.com', 'teste123456'));

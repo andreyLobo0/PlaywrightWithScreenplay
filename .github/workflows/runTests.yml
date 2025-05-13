@@ -10,7 +10,7 @@ on:
         options:
         - dev
         - staging
-        - sandbox
+        - qa
       testSuite:
         description: "Escolha a suíte de teste: Login, Product ou Users"
         required: true
@@ -38,6 +38,8 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npm run test:${{ github.event.inputs.testSuite }}
+      env:
+        ENV: ${{ github.event.inputs.environment }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

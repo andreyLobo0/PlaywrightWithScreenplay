@@ -11,7 +11,7 @@ test.describe('Users', () => {
    test.describe('Success', () => {
     test('Create User - Should create a product successfully.', async ({ page }) => {
         //Arrange
-        await page.goto('https://front.serverest.dev/admin/cadastrarusuarios');
+        await page.goto('/admin/cadastrarusuarios');
         const user = new AdminUser(page);
         //Act
         await user.attemptTo(CreateUsers(userName, userEmail, userPassword));
@@ -23,13 +23,13 @@ test.describe('Users', () => {
    test.describe('Error', () => {
     test('User Duplicate - Should exhibit alert message and not create user.', async ({ page }) => {
         //Arrange
-        await page.goto('https://front.serverest.dev/admin/cadastrarusuarios');
+        await page.goto('/admin/cadastrarusuarios');
         const user = new AdminUser(page);
         await user.attemptTo(CreateUsers(userName, userEmail, userPassword));
         await IsPageVisible('admin/listarusuarios', 'Lista dos usuários');
         await ItemCreatedIsVisible(userName)
         //Act
-        await page.goto('https://front.serverest.dev/admin/cadastrarusuarios');
+        await page.goto('/admin/cadastrarusuarios');
         await user.attemptTo(CreateUsers(userName, userEmail, userPassword));
         //Assert
         await IsPageVisible('admin/cadastrarprodutos', 'Já existe produto com esse nome');
